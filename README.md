@@ -53,4 +53,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou e
 
 ## Licença
 
-Este projeto é licenciado sob a [licença MIT](https://raw.githubusercontent.com/juliansantosinfo/PyFakeDados/main/LICENSE.txt).
+Este projeto é licenciado sob a [GPL-3.0 License](https://raw.githubusercontent.com/juliansantosinfo/PyFakeDados/main/LICENSE.txt).
