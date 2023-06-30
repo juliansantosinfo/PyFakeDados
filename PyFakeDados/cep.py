@@ -1,5 +1,5 @@
 import random
-from estado import gerar_uf
+from .estado import gerar_uf
 
 FAIXAS_CEP = {
         'AC': ('69900-000', '69999-999'),
@@ -44,7 +44,7 @@ def gerar_cep(uf=None, mask=False):
     cep += ''.join(str(random.randint(0,9)) for _ in range(3))
 
     if mask:
-        cep = cep[0:5] + '-' + cep[6:]
+        cep = cep[0:5] + '-' + cep[5:]
     else:
         cep = f'{cep}'
     return cep

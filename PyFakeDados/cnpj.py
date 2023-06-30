@@ -1,8 +1,10 @@
 import random
 import itertools
 
-def gerar_cnpj():
+def gerar_cnpj(mask=False):
+    
     while True:
+
         # Gera os oito primeiros dígitos do CNPJ de forma aleatória
         cnpj = [random.randint(0, 9) for _ in range(8)]
 
@@ -20,9 +22,14 @@ def gerar_cnpj():
         # Verifica se o CNPJ gerado é válido
         if validar_cnpj(''.join(map(str, cnpj))):
             break
+    
+    if mask:
+        cnpj = f"{cnpj[0]}{cnpj[1]}.{cnpj[2]}{cnpj[3]}{cnpj[4]}.{cnpj[5]}{cnpj[6]}{cnpj[7]}/{cnpj[8]}{cnpj[9]}{cnpj[10]}{cnpj[11]}-{cnpj[12]}{cnpj[13]}"
+    else:
+        cnpj = ''.join([str(num) for num in cnpj])
 
     # Retorna o CNPJ formatado (XX.XXX.XXX/XXXX-XX)
-    return f"{cnpj[0]}{cnpj[1]}.{cnpj[2]}{cnpj[3]}{cnpj[4]}.{cnpj[5]}{cnpj[6]}{cnpj[7]}/{cnpj[8]}{cnpj[9]}{cnpj[10]}{cnpj[11]}-{cnpj[12]}{cnpj[13]}"
+    return cnpj
 
 def validar_cnpj(cnpj):
     # Remove caracteres não numéricos do CNPJ

@@ -1,4 +1,15 @@
 import random
+from .cep import gerar_cep
+from .estado import gerar_estado, gerar_uf, busca_nome_uf
+from .municipio import gerar_municipio
+from .bairro import gerar_bairro
+from .logradouro import gerar_logradouro, gerar_numero
+from .telefone import gerar_telefone_fixo, gerar_telefone_celular
+from .email import gerar_email
+from .site import gerar_site
+from .cnpj import gerar_cnpj
+from .inscricao_estudal import gerar_inscricao_estadual
+from .utils import gerar_data
 
 def gerar_nome_empresa():
     segmento = ['Tecnologia', 'Soluções', 'Consultoria', 'Indústria', 'Comércio', 'Energia', 'Engenharia', 'Logística', 'Agro', 'Farmacêutica', 'Cerâmica', 'Madeireira', 'Marcenaria', 'Construtora', 'Metalurgica']
@@ -13,6 +24,44 @@ def gerar_nome_empresa():
     
     return f'{segmento_escolhido} {palavra1_escolhida} {palavra2_escolhida} {palavra3_escolhida}'
 
-# Exemplo de uso
-nome_empresa = gerar_nome_empresa()
-print(nome_empresa)
+def gerar_empresa(uf=None):
+
+    if uf is None:
+        uf = gerar_uf()
+
+    empresa = {}
+
+    nome = gerar_nome_empresa()
+    cnpj = gerar_cnpj()
+    inscricao_estadual = gerar_inscricao_estadual()
+    data_abertura = gerar_data()
+    site = gerar_site(nome)
+    email = gerar_email(nome)
+    cep = gerar_cep(uf)
+    endereco = gerar_logradouro()
+    numero = gerar_numero()
+    bairro = gerar_bairro()
+    municipio = gerar_municipio(uf)
+    estado = busca_nome_uf(uf)
+    telefone = gerar_telefone_fixo(uf)
+    celular = gerar_telefone_celular(uf)
+
+    empresa = {
+        "nome": nome,
+        "cnpj": cnpj,
+        "inscricao_estudal": inscricao_estadual,
+        "data_abertura": data_abertura.strftime("%d/%m/%Y"),
+        "site": site,
+        "email": email,
+        "cep": cep,
+        "endereco": endereco,
+        "numero": numero,
+        "bairro": bairro,
+        "municipio": municipio,
+        "estado": estado,
+        "uf": uf,
+        "telefone": telefone,
+        "celular": celular,
+    }
+
+    return empresa

@@ -11,7 +11,7 @@ prefixos = [
 
 sufixos = ['Vista', 'Flores', 'Alegre', 'Verde', 'Luz', 'Sol', 'Mar', 'Norte', 'Sul', 'Leste', 'Oeste']
 
-def gerar_nome_bairro():
+def gerar_bairro():
     
     prefixo = random.choice(prefixos)
     sufixo = random.choice(sufixos)

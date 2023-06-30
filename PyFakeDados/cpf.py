@@ -25,7 +25,7 @@ def validar_cpf(cpf):
 
     return True
 
-def gerar_cpf():
+def gerar_cpf(mask=False):
     # Gera os nove primeiros dígitos do CPF de forma aleatória
     cpf = [random.randint(0, 9) for _ in range(9)]
 
@@ -37,5 +37,10 @@ def gerar_cpf():
     soma = sum(x * y for x, y in zip(cpf, itertools.count(11, -1)))
     cpf.append((11 - (soma % 11)) % 11)
 
+    if mask:
+        cpf = f"{cpf[0]}{cpf[1]}{cpf[2]}.{cpf[3]}{cpf[4]}{cpf[5]}.{cpf[6]}{cpf[7]}{cpf[8]}-{cpf[9]}{cpf[10]}"
+    else:
+        cpf = ''.join([str(num) for num in cpf])
+
     # Retorna o CPF formatado (XXX.XXX.XXX-XX)
-    return f"{cpf[0]}{cpf[1]}{cpf[2]}.{cpf[3]}{cpf[4]}{cpf[5]}.{cpf[6]}{cpf[7]}{cpf[8]}-{cpf[9]}{cpf[10]}"
+    return cpf

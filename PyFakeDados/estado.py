@@ -77,3 +77,8 @@ def gerar_estado():
 
 def validar_estado(uf):
     return uf in LISTA_ESTADO
+
+def busca_nome_uf(uf):
+    if uf.upper() not in LISTA_UF:
+        raise ValueError("UF inválida.")
+    return DICT_ESTADO[uf.upper()]

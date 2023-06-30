@@ -1,7 +1,7 @@
 import csv
 import random
 
-from estado import gerar_uf
+from .estado import gerar_uf
 
 def municipios_para_lista():
 

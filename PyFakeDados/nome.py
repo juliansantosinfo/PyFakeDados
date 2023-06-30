@@ -68,3 +68,16 @@ def gerar_nome_completo(sexo=None):
     nome_completo = f"{nome} {sobrenome}"
 
     return nome_completo
+
+def gerar_nome_com_filiacao():
+
+    nome_mae = gerar_nome_completo(sexo='F')
+    nome_pai = gerar_nome_completo(sexo='M')
+
+    sobrenome_mae = nome_mae.split().pop()
+    sobrenome_pai = nome_pai.split().pop()
+
+    nome = gerar_nome()
+    nome = f"{nome} {sobrenome_mae} {sobrenome_pai}"
+
+    return nome, nome_mae, nome_pai
