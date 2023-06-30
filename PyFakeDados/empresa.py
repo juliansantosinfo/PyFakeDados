@@ -8,7 +8,7 @@ from PyFakeDados.telefone import gerar_telefone_fixo, gerar_telefone_celular
 from PyFakeDados.email import gerar_email_empresa
 from PyFakeDados.site import gerar_site
 from PyFakeDados.cnpj import gerar_cnpj
-from PyFakeDados.inscricao_estudal import gerar_inscricao_estadual
+from PyFakeDados.inscricao_estadual import gerar_inscricao_estadual
 from PyFakeDados.utils import gerar_data
 from PyFakeDados.pessoa import gerar_pessoa
 
@@ -76,7 +76,7 @@ def gerar_empresa(uf=None, segmento=None):
     empresa = {
         "nome": nome,
         "cnpj": cnpj,
-        "inscricao_estudal": inscricao_estadual,
+        "inscricao_estadual": inscricao_estadual,
         "data_abertura": data_abertura.strftime("%d/%m/%Y"),
         "site": site,
         "email": email,
