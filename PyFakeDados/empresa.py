@@ -5,7 +5,7 @@ from PyFakeDados.municipio import gerar_municipio
 from PyFakeDados.bairro import gerar_bairro
 from PyFakeDados.logradouro import gerar_logradouro, gerar_numero
 from PyFakeDados.telefone import gerar_telefone_fixo, gerar_telefone_celular
-from PyFakeDados.email import gerar_email
+from PyFakeDados.email import gerar_email_empresa
 from PyFakeDados.site import gerar_site
 from PyFakeDados.cnpj import gerar_cnpj
 from PyFakeDados.inscricao_estudal import gerar_inscricao_estadual
@@ -60,7 +60,7 @@ def gerar_empresa(uf=None, segmento=None):
     inscricao_estadual = gerar_inscricao_estadual()
     data_abertura = gerar_data()
     site = gerar_site(nome)
-    email = gerar_email(nome)
+    email = gerar_email_empresa(nome)
     cep = gerar_cep(uf)
     endereco = gerar_logradouro()
     numero = gerar_numero()

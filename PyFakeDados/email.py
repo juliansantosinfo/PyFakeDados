@@ -12,8 +12,8 @@ def gerar_email(nome):
     return email
 
 def gerar_email_empresa(nome):
-    nome = remover_acentos(nome)
-    nome = nome.lower().replace(" ", "")
+    nome = ''.join(f"{i}" for i in nome.split()[:-1])
+    nome = remover_acentos(nome).lower().replace(" ", "")
     provedor = nome
     dominio = random.choice(dominios)
     email = f'contato@{nome}.{dominio}'
