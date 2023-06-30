@@ -11,6 +11,7 @@ from PyFakeDados.email import gerar_email, gerar_email_pessoa
 from PyFakeDados.senha import gerar_senha, gerar_senha_numerica
 from PyFakeDados.site import gerar_site
 from PyFakeDados.cpf import gerar_cpf
+from PyFakeDados.rg import gerar_rg
 from PyFakeDados.ctps import gerar_ctps
 from PyFakeDados.pis import gerar_pis
 from PyFakeDados.utils import gerar_data, gerar_data_nascimento
@@ -36,6 +37,7 @@ def gerar_pessoa(uf=None, mask=False, idade=None, recem_nascido=False):
     sexo = gerar_sexo()
     nome, mae, pai = gerar_nome_com_filiacao()
     cpf = gerar_cpf(mask=mask)
+    rg = gerar_rg()
     ctps = gerar_ctps()
     pis = gerar_pis()
     data_nascimento = data_nascimento
@@ -58,6 +60,7 @@ def gerar_pessoa(uf=None, mask=False, idade=None, recem_nascido=False):
         "mae": mae,
         "pai": pai,
         "cpf": cpf,
+        "rg": rg,
         "ctps": ctps,
         "pis": pis,
         "data_nascimento": data_nascimento.strftime("%d/%m/%Y"),
