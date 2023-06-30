@@ -1,4 +1,4 @@
-1 - Create a file with the name .pireck in the Home.
+1 - Create a file with the name .pypirc in the Home.
 2 - Add the data below in the file.
 3 - Replace credentials.
 
