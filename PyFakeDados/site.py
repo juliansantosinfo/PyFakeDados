@@ -1,5 +1,5 @@
 import random
-from .utils import remover_acentos
+from PyFakeDados.utils import remover_acentos
 
 dominios = ['com', "com.br", "xyz", "info",]
 

@@ -1,5 +1,5 @@
 import random
-from .estado import gerar_uf
+from PyFakeDados.estado import gerar_uf
 
 FAIXAS_CEP = {
         'AC': ('69900-000', '69999-999'),

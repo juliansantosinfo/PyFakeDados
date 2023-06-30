@@ -1,19 +1,19 @@
 import random
 from datetime import datetime, timedelta
-from .nome import gerar_sexo, gerar_nome, gerar_sobrenome, gerar_nome_completo, gerar_nome_com_filiacao
-from .cep import gerar_cep
-from .estado import gerar_estado, gerar_uf, busca_nome_uf
-from .municipio import gerar_municipio
-from .bairro import gerar_bairro
-from .logradouro import gerar_logradouro, gerar_numero
-from .telefone import gerar_telefone_fixo, gerar_telefone_celular
-from .email import gerar_email, gerar_email_pessoa
-from .senha import gerar_senha, gerar_senha_numerica
-from .site import gerar_site
-from .cpf import gerar_cpf
-from .ctps import gerar_ctps
-from .pis import gerar_pis
-from .utils import gerar_data, gerar_data_nascimento
+from PyFakeDados.nome import gerar_sexo, gerar_nome, gerar_sobrenome, gerar_nome_completo, gerar_nome_com_filiacao
+from PyFakeDados.cep import gerar_cep
+from PyFakeDados.estado import gerar_estado, gerar_uf, busca_nome_uf
+from PyFakeDados.municipio import gerar_municipio
+from PyFakeDados.bairro import gerar_bairro
+from PyFakeDados.logradouro import gerar_logradouro, gerar_numero
+from PyFakeDados.telefone import gerar_telefone_fixo, gerar_telefone_celular
+from PyFakeDados.email import gerar_email, gerar_email_pessoa
+from PyFakeDados.senha import gerar_senha, gerar_senha_numerica
+from PyFakeDados.site import gerar_site
+from PyFakeDados.cpf import gerar_cpf
+from PyFakeDados.ctps import gerar_ctps
+from PyFakeDados.pis import gerar_pis
+from PyFakeDados.utils import gerar_data, gerar_data_nascimento
 
 def gerar_pessoa(uf=None, mask=False, idade=None, recem_nascido=False):
 

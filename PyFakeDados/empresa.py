@@ -1,15 +1,15 @@
 import random
-from .cep import gerar_cep
-from .estado import gerar_estado, gerar_uf, busca_nome_uf
-from .municipio import gerar_municipio
-from .bairro import gerar_bairro
-from .logradouro import gerar_logradouro, gerar_numero
-from .telefone import gerar_telefone_fixo, gerar_telefone_celular
-from .email import gerar_email
-from .site import gerar_site
-from .cnpj import gerar_cnpj
-from .inscricao_estudal import gerar_inscricao_estadual
-from .utils import gerar_data
+from PyFakeDados.cep import gerar_cep
+from PyFakeDados.estado import gerar_estado, gerar_uf, busca_nome_uf
+from PyFakeDados.municipio import gerar_municipio
+from PyFakeDados.bairro import gerar_bairro
+from PyFakeDados.logradouro import gerar_logradouro, gerar_numero
+from PyFakeDados.telefone import gerar_telefone_fixo, gerar_telefone_celular
+from PyFakeDados.email import gerar_email
+from PyFakeDados.site import gerar_site
+from PyFakeDados.cnpj import gerar_cnpj
+from PyFakeDados.inscricao_estudal import gerar_inscricao_estadual
+from PyFakeDados.utils import gerar_data
 
 def gerar_nome_empresa():
     segmento = ['Tecnologia', 'Soluções', 'Consultoria', 'Indústria', 'Comércio', 'Energia', 'Engenharia', 'Logística', 'Agro', 'Farmacêutica', 'Cerâmica', 'Madeireira', 'Marcenaria', 'Construtora', 'Metalurgica']

@@ -1,5 +1,5 @@
 import random
-from .estado import gerar_uf
+from PyFakeDados.estado import gerar_uf
 
 LISTA_DDD = {
         'AC': ['68'],

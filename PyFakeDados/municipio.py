@@ -1,13 +1,16 @@
 import csv
 import random
+import os
+from pathlib import Path
+from PyFakeDados.estado import gerar_uf
 
-from .estado import gerar_uf
+FILE_MUNICIPIOS = os.path.join(Path(__file__).resolve().parent, "src", "municipios.csv") 
 
 def municipios_para_lista():
 
     municipios = []
     
-    with open('PyFakeDados/src/municipios.csv', 'r', encoding='utf-8') as file:
+    with open(FILE_MUNICIPIOS, 'r', encoding='utf-8') as file:
         content = csv.reader(file, delimiter=';')
         for line in content:
             uf = line[2]
@@ -20,7 +23,7 @@ def municipios_para_dict():
 
     municipios = {}
     
-    with open('PyFakeDados/src/municipios.csv', 'r', encoding='utf-8') as file:
+    with open(FILE_MUNICIPIOS, 'r', encoding='utf-8') as file:
         
         content = csv.reader(file, delimiter=';')
         
