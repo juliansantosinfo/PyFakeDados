@@ -1,4 +1,5 @@
 import random
+from PyFakeDados.nome import gerar_nome_completo
 from PyFakeDados.cep import gerar_cep
 from PyFakeDados.estado import gerar_estado, gerar_uf, busca_nome_uf
 from PyFakeDados.municipio import gerar_municipio
@@ -11,6 +12,7 @@ from PyFakeDados.cnpj import gerar_cnpj
 from PyFakeDados.inscricao_estadual import gerar_inscricao_estadual
 from PyFakeDados.utils import gerar_data
 from PyFakeDados.pessoa import gerar_pessoa
+from PyFakeDados.utils import remover_acentos
 
 LISTA_SEGMENTOS = ['Consultoria', 'Indústria', 'Comércio', 'Energia', 'Engenharia', 'Logística',
                    'Transportadora', 'Agro', 'Farmacêutica', 'Cerâmica', 'Madeireira', 'Marcenaria', 'Construtora', 'Metalurgica']
@@ -22,10 +24,26 @@ def gerar_segmento():
 
 def gerar_nome_empresa(segmento=None):
 
-    layouts = [1, 2, 3]
+    layouts = [1, 2, 3, 4, 5]
+    nomes = [gerar_nome_completo() for _ in range(1, 50)]
     palavras1 = ['Nova', 'Primeira', 'Global', 'Mega', 'Excel', 'Pro', 'Super', 'Ultra',
-                 'Master', 'Max', 'Top', 'Red', 'Blue', 'Green', 'Gray', 'Sec', 'Global', ]
-    palavras2 = ['Tecnologia', 'Soluções']
+                 'Master', 'Max', 'Top', 'Red', 'Blue', 'Green', 'Gray', 'Sec', 'Global',
+                 "Tech", "Soluções", "Inovação", "Global", "Digital", "Sistemas", "Estratégia",
+                 "Criativa", "Negócios", "Marketing", "Web", "Inteligência", "Projetos", "Tecnologia", "Serviços",
+                 "Desenvolvimento", "Software", "Gestão", "Empreendimentos", "Analytics", "Design",
+                 "Comunicação", "Segurança", "Mobile", "App", "Investimentos", "Financeira",
+                 "Consulting", "Vendas", "E-commerce", "Social", "Educação", "Recursos", "Saúde",
+                 "Arquitetura", "Arte", "Eventos", "Imobiliária", "Alimentos",
+                 "Moda", "Transporte", "Automotiva", "Ambiental", "Telecomunicações"]
+    palavras2 = ['Nova', 'Primeira', 'Global', 'Mega', 'Excel', 'Pro', 'Super', 'Ultra',
+                 'Master', 'Max', 'Top', 'Red', 'Blue', 'Green', 'Gray', 'Sec', 'Global',
+                 "Tech", "Soluções", "Inovação", "Global", "Digital", "Sistemas", "Estratégia",
+                 "Criativa", "Negócios", "Marketing", "Web", "Inteligência", "Projetos", "Tecnologia", "Serviços",
+                 "Desenvolvimento", "Software", "Gestão", "Empreendimentos", "Analytics", "Design",
+                 "Comunicação", "Segurança", "Mobile", "App", "Investimentos", "Financeira",
+                 "Consulting", "Vendas", "E-commerce", "Social", "Educação", "Recursos", "Saúde",
+                 "Arquitetura", "Arte", "Eventos", "Imobiliária", "Alimentos",
+                 "Moda", "Transporte", "Automotiva", "Ambiental", "Telecomunicações"]
     palavras3 = ['S/A', 'S.A.', 'LTDA', 'Ltda.', 'EIRELI', 'ME', 'Group']
 
     layout = random.choice(layouts)
@@ -33,21 +51,27 @@ def gerar_nome_empresa(segmento=None):
     if segmento is None:
         segmento = gerar_segmento()
 
+    nome = random.choice(nomes)
     palavra1 = random.choice(palavras1)
+    palavras2.remove(palavra1)
     palavra2 = random.choice(palavras2)
     palavra3 = random.choice(palavras3)
 
-    if layouts == 1:
+    if layout == 1:
         return f'{segmento} {palavra1} {palavra2} {palavra3}'
-    elif layouts == 2:
+    elif layout == 2:
         return f'{palavra1} {palavra2} {segmento} {palavra3}'
-    elif layouts == 3:
+    elif layout == 3:
         return f'{palavra1} {segmento} {palavra2} {palavra3}'
+    elif layout == 4:
+        return f'{nome} {segmento}'
+    elif layout == 5:
+        return f'{segmento} {nome}'
 
     return f'{segmento} {palavra1} {palavra2} {palavra3}'
 
 
-def gerar_empresa(uf=None, segmento=None):
+def gerar_empresa(uf=None, segmento=None, force_ASCII=False, force_upper=False):
 
     if uf is None:
         uf = gerar_uf()
@@ -70,8 +94,8 @@ def gerar_empresa(uf=None, segmento=None):
     telefone = gerar_telefone_fixo(uf)
     celular = gerar_telefone_celular(uf)
 
-    if not nome.endswith("S.A.") and not nome.endswith("S/A") :
-        socios = [gerar_pessoa() for socio in range(1, random.randint(1,5))]
+    if not nome.endswith("S.A.") and not nome.endswith("S/A"):
+        socios = [gerar_pessoa() for socio in range(1, random.randint(1, 5))]
 
     empresa = {
         "nome": nome,
@@ -91,5 +115,15 @@ def gerar_empresa(uf=None, segmento=None):
         "celular": celular,
         "socios": socios,
     }
+
+    if force_ASCII:
+        for i in empresa:
+            if isinstance(empresa[i], str):
+                empresa[i] = remover_acentos(empresa[i])
+
+    if force_upper:
+        for i in empresa:
+            if isinstance(empresa[i], str):
+                empresa[i] = empresa[i].upper()
 
     return empresa

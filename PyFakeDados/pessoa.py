@@ -15,8 +15,9 @@ from PyFakeDados.rg import gerar_rg
 from PyFakeDados.ctps import gerar_ctps
 from PyFakeDados.pis import gerar_pis
 from PyFakeDados.utils import gerar_data, gerar_data_nascimento
+from PyFakeDados.utils import remover_acentos
 
-def gerar_pessoa(uf=None, mask=False, idade=None, recem_nascido=False):
+def gerar_pessoa(uf=None, mask=False, idade=None, recem_nascido=False, force_ASCII=False, force_upper=False):
 
     if uf is None:
         uf = gerar_uf()
@@ -78,5 +79,15 @@ def gerar_pessoa(uf=None, mask=False, idade=None, recem_nascido=False):
         "telefone": telefone,
         "celular": celular,
     }
+
+    if force_ASCII:
+        for i in pessoa:
+            if isinstance(pessoa[i], str):
+                pessoa[i] = remover_acentos(pessoa[i])
+    
+    if force_upper:
+        for i in pessoa:
+            if isinstance(pessoa[i], str):
+                pessoa[i] = pessoa[i].upper()
 
     return pessoa
