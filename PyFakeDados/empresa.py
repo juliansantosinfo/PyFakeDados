@@ -10,28 +10,52 @@ from PyFakeDados.site import gerar_site
 from PyFakeDados.cnpj import gerar_cnpj
 from PyFakeDados.inscricao_estudal import gerar_inscricao_estadual
 from PyFakeDados.utils import gerar_data
+from PyFakeDados.pessoa import gerar_pessoa
 
-def gerar_nome_empresa():
-    segmento = ['Tecnologia', 'Soluções', 'Consultoria', 'Indústria', 'Comércio', 'Energia', 'Engenharia', 'Logística', 'Agro', 'Farmacêutica', 'Cerâmica', 'Madeireira', 'Marcenaria', 'Construtora', 'Metalurgica']
-    palavra1 = ['Nova', 'Primeira', 'Global', 'Mega', 'Excel', 'Pro', 'Super', 'Ultra', 'Master', 'Max', 'Top']
-    palavra2 = ['Tecnologia', 'Soluções', 'Consultoria', 'Indústria', 'Comércio', 'Energia', 'Engenharia', 'Logística', 'Agro', 'Farmacêutica']
-    palavra3 = ['S/A', 'LTDA', 'Ltda.', 'EIRELI', 'ME', 'S.A.', 'Group']
-    
-    segmento_escolhido = random.choice(segmento)
-    palavra1_escolhida = random.choice(palavra1)
-    palavra2_escolhida = random.choice(palavra2)
-    palavra3_escolhida = random.choice(palavra3)
-    
-    return f'{segmento_escolhido} {palavra1_escolhida} {palavra2_escolhida} {palavra3_escolhida}'
+LISTA_SEGMENTOS = ['Consultoria', 'Indústria', 'Comércio', 'Energia', 'Engenharia', 'Logística',
+                   'Transportadora', 'Agro', 'Farmacêutica', 'Cerâmica', 'Madeireira', 'Marcenaria', 'Construtora', 'Metalurgica']
 
-def gerar_empresa(uf=None):
+
+def gerar_segmento():
+    return random.choice(LISTA_SEGMENTOS)
+
+
+def gerar_nome_empresa(segmento=None):
+
+    layouts = [1, 2, 3]
+    palavras1 = ['Nova', 'Primeira', 'Global', 'Mega', 'Excel', 'Pro', 'Super', 'Ultra',
+                 'Master', 'Max', 'Top', 'Red', 'Blue', 'Green', 'Gray', 'Sec', 'Global', ]
+    palavras2 = ['Tecnologia', 'Soluções']
+    palavras3 = ['S/A', 'S.A.', 'LTDA', 'Ltda.', 'EIRELI', 'ME', 'Group']
+
+    layout = random.choice(layouts)
+
+    if segmento is None:
+        segmento = gerar_segmento()
+
+    palavra1 = random.choice(palavras1)
+    palavra2 = random.choice(palavras2)
+    palavra3 = random.choice(palavras3)
+
+    if layouts == 1:
+        return f'{segmento} {palavra1} {palavra2} {palavra3}'
+    elif layouts == 2:
+        return f'{palavra1} {palavra2} {segmento} {palavra3}'
+    elif layouts == 3:
+        return f'{palavra1} {segmento} {palavra2} {palavra3}'
+
+    return f'{segmento} {palavra1} {palavra2} {palavra3}'
+
+
+def gerar_empresa(uf=None, segmento=None):
 
     if uf is None:
         uf = gerar_uf()
 
     empresa = {}
+    socios = []
 
-    nome = gerar_nome_empresa()
+    nome = gerar_nome_empresa(segmento)
     cnpj = gerar_cnpj()
     inscricao_estadual = gerar_inscricao_estadual()
     data_abertura = gerar_data()
@@ -45,6 +69,9 @@ def gerar_empresa(uf=None):
     estado = busca_nome_uf(uf)
     telefone = gerar_telefone_fixo(uf)
     celular = gerar_telefone_celular(uf)
+
+    if not nome.endswith("S.A.") and not nome.endswith("S/A") :
+        socios = [gerar_pessoa() for socio in range(1, random.randint(1,5))]
 
     empresa = {
         "nome": nome,
@@ -62,6 +89,7 @@ def gerar_empresa(uf=None):
         "uf": uf,
         "telefone": telefone,
         "celular": celular,
+        "socios": socios,
     }
 
     return empresa
