@@ -15,7 +15,7 @@ def gerar_endereco(uf=None, force_ASCII=False, force_upper=False):
         uf = gerar_uf()
 
     logradouro = gerar_logradouro()
-    numero = gerar_numero
+    numero = gerar_numero()
     bairro = gerar_bairro()
     estado = busca_nome_uf(uf)
     municipio = gerar_municipio(uf=uf)
