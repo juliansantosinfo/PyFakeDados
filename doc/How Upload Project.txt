@@ -16,4 +16,5 @@ python setup.py sdist \
 or
 python setup.py sdist \
 && python setup.py bdist_wheel \
-&& twine upload --skip-existing -r testpypi dist/*
+&& twine upload --skip-existing -r testpypi dist/* \
+&& twine upload --skip-existing -r pypi dist/*
