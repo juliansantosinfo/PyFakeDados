@@ -13,5 +13,12 @@ class TestBairro(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertIsInstance(result, str)
 
+class TestCEP(unittest.TestCase):
+    
+    def test_gerar_cep(self):
+        result = gerar_cep()
+        self.assertIsNotNone(result)
+        self.assertIsInstance(result, str)
+
 if __name__ == '__main__':
     unittest.main()
