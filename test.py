@@ -20,5 +20,18 @@ class TestCEP(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertIsInstance(result, str)
 
+class TestCNPJ(unittest.TestCase):
+    
+    def test_gerar_cnpj(self):
+        result = gerar_cnpj()
+        self.assertIsNotNone(result)
+        self.assertIsInstance(result, str)
+    
+    def test_validar_cnpj(self):
+        cnpj = gerar_cnpj()
+        result = validar_cnpj(cnpj)
+        self.assertIsNotNone(result)
+        self.assertIsInstance(result, bool)
+
 if __name__ == '__main__':
     unittest.main()
