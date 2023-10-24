@@ -46,5 +46,12 @@ class TestCPF(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertIsInstance(result, str)
 
+class TestCTPS(unittest.TestCase):
+    
+    def test_gerar_ctps(self):
+        result = gerar_ctps()
+        self.assertIsNone(result)
+        self.assertIsInstance(result, str)
+
 if __name__ == '__main__':
     unittest.main()
