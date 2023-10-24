@@ -33,5 +33,18 @@ class TestCNPJ(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertIsInstance(result, bool)
 
+class TestCPF(unittest.TestCase):
+
+    def test_gerar_cpf(self):
+        result = gerar_cpf()
+        self.assertIsNotNone(result)
+        self.assertIsInstance(result, str)
+
+    def test_validar_cpf(self):
+        cpf = gerar_cpf()
+        result = validar_cpf(cpf)
+        self.assertIsNotNone(result)
+        self.assertIsInstance(result, str)
+
 if __name__ == '__main__':
     unittest.main()
