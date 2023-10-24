@@ -44,13 +44,13 @@ class TestCPF(unittest.TestCase):
         cpf = gerar_cpf()
         result = validar_cpf(cpf)
         self.assertIsNotNone(result)
-        self.assertIsInstance(result, str)
+        self.assertIsInstance(result, bool)
 
 class TestCTPS(unittest.TestCase):
     
     def test_gerar_ctps(self):
         result = gerar_ctps()
-        self.assertIsNone(result)
+        self.assertIsNotNone(result)
         self.assertIsInstance(result, str)
 
 if __name__ == '__main__':
