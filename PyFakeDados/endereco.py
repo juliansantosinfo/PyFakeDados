@@ -1,5 +1,5 @@
 import random
-from PyFakeDados.CONSTANTS import *
+from PyFakeDados.CONSTANTS_ENDERECOS import *
 from PyFakeDados.logradouro import gerar_logradouro, gerar_logradouro_com_numero, gerar_numero
 from PyFakeDados.bairro import gerar_bairro
 from PyFakeDados.cep import gerar_cep

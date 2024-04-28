@@ -1,6 +1,7 @@
 import random
 from datetime import datetime, timedelta
-from PyFakeDados.nome import gerar_sexo, gerar_nome, gerar_sobrenome, gerar_nome_completo, gerar_nome_com_filiacao
+from PyFakeDados.sexo import gerar_sexo
+from PyFakeDados.nome import gerar_nome, gerar_sobrenome, gerar_nome_completo, gerar_nome_com_filiacao
 from PyFakeDados.cep import gerar_cep
 from PyFakeDados.estado import gerar_estado, gerar_uf, busca_nome_uf
 from PyFakeDados.municipio import gerar_municipio

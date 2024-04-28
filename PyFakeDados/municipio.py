@@ -3,7 +3,7 @@ import random
 import os
 from pathlib import Path
 from PyFakeDados.estado import gerar_uf
-from PyFakeDados.CONSTANTS import MUNICIPIOS, MUNICIPIOS_POR_ESTADO
+from PyFakeDados.CONSTANTS_ENDERECOS import MUNICIPIOS, MUNICIPIOS_POR_ESTADO
 
 def gerar_municipio(uf=None):
 

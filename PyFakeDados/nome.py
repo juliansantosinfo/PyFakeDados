@@ -1,69 +1,52 @@
 import random
+from PyFakeDados.CONSTANTS_NOMES import *
+from PyFakeDados.sexo import gerar_sexo
 
-SEXO_MASCULINO = 'M'
-SEXO_FEMININO = 'F'
+LISTA_NOMES_MASCULINOS = NOMES_MASCULINOS
+LISTA_NOMES_FEMININOS = NOMES_FEMININOS
+SOBRENOMES = SOBRENOMES
 
-LISTA_SEXO = [SEXO_MASCULINO, SEXO_FEMININO]
-
-LISTA_NOMES_MASCULINOS = [
-    "Alex", "Bernardo", "Caio", "Daniel", "Eduardo", "Felipe", "Gabriel", "Henrique",
-    "Igor", "João", "Kauã", "Leonardo", "Matheus", "Nathan", "Otávio", "Pedro",
-    "Rafael", "Samuel", "Thiago", "Vitor", "Wagner", "Xavier", "Yuri", "Zélio",
-    "André", "Bruno", "Carlos", "Diego", "Erick", "Fernando", "Gustavo", "Hugo",
-    "Ícaro", "Jonathan", "Klaus", "Lucas", "Márcio", "Nícolas", "Orlando", "Paulo",
-    "Ricardo", "Sérgio", "Túlio", "Ulisses", "Valdo", "Walter", "Xande", "Yan", "Zeca"
-]
-
-LISTA_NOMES_FEMININOS = [
-    "Alice", "Bianca", "Carolina", "Daniela", "Eduarda", "Fernanda", "Gabriela", "Helena",
-    "Isabela", "Júlia", "Kamila", "Larissa", "Mariana", "Natália", "Olívia", "Patrícia",
-    "Raquel", "Sara", "Tatiana", "Valentina", "Wendy", "Ximena", "Yasmin", "Zara",
-    "Amanda", "Bruna", "Camila", "Débora", "Eloá", "Fátima", "Giovana", "Heloísa",
-    "Isis", "Jéssica", "Karina", "Lara", "Mirella", "Natasha", "Olga", "Priscila",
-    "Rafaela", "Sabrina", "Talita", "Úrsula", "Vitória", "Wanda", "Xuxa", "Yara", "Zilda"
-]
-
-SOBRENOMES = [
-    "Silva", "Santos", "Oliveira", "Souza", "Pereira", "Rodrigues", "Ferreira", "Almeida",
-    "Costa", "Gomes", "Martins", "Rocha", "Ribeiro", "Carvalho", "Melo", "Sousa",
-    "Alves", "Pinto", "Cardoso", "Teixeira", "Nascimento", "Lima", "Araújo", "Fernandes",
-    "Cavalcanti", "Mendes", "Barbosa", "Dias", "Cunha", "Moreira", "Correia", "Castro",
-    "Monteiro", "Sales", "Reis", "Tavares", "Andrade", "Moura", "Freitas", "Santana",
-    "Marques", "Bezerra", "Vieira", "Freire", "Farias", "Gonçalves", "Vargas", "Ramos",
-    "Pinheiro", "Lopes", "Campos", "Brito", "Montenegro", "Macedo", "Morais", "Viana",
-    "Coutinho", "Leal", "Mota", "Maia", "Pacheco", "Peixoto", "Junqueira", "Machado",
-    "Dantas", "Fonseca", "Azevedo", "Barros", "Miranda", "Mourão", "Valente", "Xavier",
-    "Zanetti", "Amorim", "Borges", "Diniz", "Fraga", "Godoy", "Horta", "Jardim",
-    "Klein", "Luz", "Nogueira", "Otero", "Parreira", "Quintana", "Rangel", "Sampaio",
-    "Toledo", "Uribe", "Vasconcelos", "Wanderley", "Ximenes", "Yoshida", "Zimmermann"
-]
-
-def gerar_sexo():
-    return random.choice(LISTA_SEXO)
-
-def gerar_nome(sexo=None):
+def gerar_nome(sexo=None, composto=False):
     
+    nome = ''
+    segundo_nome = ''
+
     if sexo is None:
         sexo = gerar_sexo()
 
+    if composto is None:
+        composto = random.choice([True, False])
+
     if sexo == 'M':
         nome = random.choice(LISTA_NOMES_MASCULINOS)
+        if composto:
+            segundo_nome = random.choice(LISTA_NOMES_MASCULINOS)
     elif sexo == 'F':
         nome = random.choice(LISTA_NOMES_FEMININOS)
+        if composto:
+            segundo_nome = random.choice(LISTA_NOMES_FEMININOS)
     else:
         raise ValueError("Sexo inválido. Use 'M' para masculino ou 'F' para feminino.")
     
-    return f"{nome}"
+    if composto:
+        nome = f"{nome} {segundo_nome}"
+    else:
+        nome = f"{nome}"
+    
+    return nome
 
 def gerar_sobrenome():
     return random.choice(SOBRENOMES)
 
-def gerar_nome_completo(sexo=None):
+def gerar_nome_completo(sexo=None, composto=False):
 
     if sexo is None:
         sexo = gerar_sexo()
+    
+    if composto is None:
+        composto = random.choice([True, False])
 
-    nome = gerar_nome(sexo=sexo)
+    nome = gerar_nome(sexo=sexo, composto=composto)
     sobrenome = gerar_sobrenome()
     nome_completo = f"{nome} {sobrenome}"
 
