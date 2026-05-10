@@ -1,13 +1,13 @@
-import json
 import random
-import os
-from pathlib import Path
 from datetime import date, datetime, timedelta
+
 from unidecode import unidecode
 
-def remover_acentos(texto):
+
+def remover_acentos(texto: str) -> str:
     texto_sem_acentos = unidecode(texto)
     return texto_sem_acentos
+
 
 def gerar_data(data_inicial=None, data_final=None):
 
@@ -16,16 +16,17 @@ def gerar_data(data_inicial=None, data_final=None):
         data_inicial = datetime(1970, 1, 1)
     if data_final is None:
         data_final = datetime.now() - timedelta(days=30)
-    
+
     # Gerar uma data aleatória dentro do intervalo definido
     diferenca = data_final - data_inicial
     dias_aleatorios = random.randint(0, diferenca.days)
     data_aleatoria = data_inicial + timedelta(days=dias_aleatorios)
-    
+
     return data_aleatoria
 
+
 def calcular_idade(data_nascimento):
-    
+
     hoje = date.today()
     ano_atual = hoje.year
     mes_atual = hoje.month
@@ -37,10 +38,12 @@ def calcular_idade(data_nascimento):
 
     idade = ano_atual - ano_nascimento
 
-    if mes_atual < mes_nascimento or (mes_atual == mes_nascimento and dia_atual < dia_nascimento):
+    if mes_atual < mes_nascimento or (
+            mes_atual == mes_nascimento and dia_atual < dia_nascimento):
         idade -= 1
 
     return idade
+
 
 def calcular_data_nascimento(idade):
 
@@ -52,14 +55,15 @@ def calcular_data_nascimento(idade):
 
     return data_nascimento
 
+
 def gerar_data_nascimento(idade):
-    
+
     hoje = date.today()
     ano_atual = hoje.year
 
     ano_nascimento = ano_atual - idade
     mes_nascimento = random.randint(1, 12)
-    
+
     # Considerando meses com 30 dias
     if mes_nascimento == 2:
         dia_nascimento = random.randint(1, 28)
@@ -68,7 +72,8 @@ def gerar_data_nascimento(idade):
     else:
         dia_nascimento = random.randint(1, 31)
 
-    if mes_nascimento > hoje.month or (mes_nascimento == hoje.month and dia_nascimento >= hoje.day):
+    if mes_nascimento > hoje.month or (
+            mes_nascimento == hoje.month and dia_nascimento >= hoje.day):
         ano_nascimento -= 1
 
     data_nascimento = date(ano_nascimento, mes_nascimento, dia_nascimento)
